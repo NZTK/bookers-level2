@@ -1,0 +1,36 @@
+<%= render "home/header" %>
+<div class="body">
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+<%= render "users/left" , user: @user %>
+      <div class="col-xs-9" >
+          <h2>Users</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th>name</th>
+                <th></th>
+                <th callspan="3" ></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @user.each do |user| %>
+              <tr>
+                <td><%=  %></td>
+                <td><%= user.name %></td>
+                <td><%= link_to "Show" , root_path , class: "user_#{user.id}" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+<%= render "home/footer" %>
