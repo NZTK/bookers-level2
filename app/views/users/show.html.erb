@@ -1,14 +1,7 @@
 <%= render "home/header" %>
-<div class="body">
-  <div class="container">
-    <% if flash[:notice] %>
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-<%= render "users/left" , user: @user %>
+<%= render "users/left" , user: @user , book: @book %>
         <div class="col-xs-9" >
-          <h2>Users</h2>
+          <h2>Books</h2>
           <table class="table table-hover">
             <thead>
               <tr>
@@ -18,11 +11,23 @@
                 <th callspan="3" ></th>
               </tr>
             </thead>
+            <tbody>
 
-            
+              <% @books.each do |f| %>
+              <tr>
+              	<td><%= link_to user_path do %>
+              		<%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: "jpg" , fallback: "no_image.jpg" , size: '40x40' %>
+              		<% end %></td>
+                <td><%= link_to f.title , book_path ,class: "book_#{@book.id}"%></td>
+                <td><%= f.body %></td>
+              </tr>
+              <% end %>
+            </tbody>
+
+
+
           </table>
         </div>
-      </div>
-  </div>
+   </div>
 </div>
 <%= render "home/footer" %>

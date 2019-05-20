@@ -1,12 +1,5 @@
 <%= render "home/header" %>
-<div class="body">
-  <div class="container">
-    <% if flash[:notice] %>
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-<%= render "books/new"  %>
+<%= render "users/left" , user: @user , book: @book %>
     <div class="col-xs-9" >
           <h2>Books</h2>
           <table class="table table-hover">
@@ -19,10 +12,12 @@
               </tr>
             </thead>
             <tbody>
+            	
               <% @books.each do |book| %>
               <tr>
-                <td><%=  %></td>
-                <td><%= book.title %></td>
+
+                <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: "jpg" , fallback: "no_image.jpg" , size: '40x40' %></td>
+                <td><%= link_to book.title , book_path(book) %></td>
                 <td><%= book.body %></td>
               </tr>
               <% end %>

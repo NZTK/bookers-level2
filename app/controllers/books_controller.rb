@@ -1,19 +1,31 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   def show
-    @book = Book.find(params[:id])
+
+    @books = Book.find(params[:id])
+    @book = Book.new
+    #@user = User.find(params[:id])
+    @user = User.find_by(id: current_user.id)
   end
 
   def index
-  	@books = Book.all
-  	@book = Book.new
+    #@book = Book.all
+    #@book = Book.find(params[:id])
+    @book = Book.new
+    @user = current_user
+    @books = Book.all
   end
 
   def new
-  	  @book = Book.new
+      @book = Book.new
+  	  @user = User.new
   end
 
   def create
         @book = Book.new(book_params)
+        @book.user_id = current_user.id
+        @books = Book.all
+
         if @book.save
           flash[:notice] = "Book was successfully created"
            redirect_to book_path(@book.id)
@@ -43,6 +55,9 @@ class BooksController < ApplicationController
   private
     def book_params
       params.require(:book).permit(:title, :body)
+    end
+    def user_params
+        params.require(:user).permit(:name, :profile_image , :introduction)
     end
 
 end

@@ -7,14 +7,16 @@
             <% if user_signed_in? %>
             <nav>
                     <ul class="nav navbar-nav navbar-right">
+                     
 
-                        <li><%=  link_to root_path , class: "glyphicon glyphicon-home home" do %>
+                        <li><%=  link_to user_path(id: current_user.id) , class: "glyphicon glyphicon-home home" do %>
                            Home
                         <% end %></li>
+
                         <li><%=  link_to users_path , class: "glyphicon glyphicon-user users" do %>
                           Users
                         <% end %></li>
-                        <li><%=  link_to root_path , class: "glyphicon glyphicon-book books" do %>
+                        <li><%=  link_to books_path , class: "glyphicon glyphicon-book books" do %>
                            Book
                         <% end %></li>
                         <li><%= link_to destroy_user_session_path, class: "glyphicon glyphicon-log-out logou", :method => :delete do %>
