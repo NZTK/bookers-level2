@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
     @books = Book.find(params[:id])
     @book = Book.new
-    #@user = User.find(params[:id])
+    @users = @books.user
     @user = User.find_by(id: current_user.id)
   end
 
@@ -52,6 +52,13 @@ class BooksController < ApplicationController
         book.destroy
         redirect_to books_path
  end
+ def ensure_correct_user
+    @book = Book.find_by(id:params[:id])
+    if @book.user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to("index")
+    end
+  end
   private
     def book_params
       params.require(:book).permit(:title, :body)

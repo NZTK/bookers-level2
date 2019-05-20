@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 	#@users = User.all
   	#@user = User.find(params[:id])
   	@book = Book.new
+  	#@books = Book.where(user_id: @user.id)
   end
   def create
         @book = Book.new(book_params ,user_id: @current_user.id)

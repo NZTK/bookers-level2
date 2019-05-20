@@ -1,20 +1,20 @@
 <%= render "home/header" %>
 
-<%= render "users/left" , user: @user , book: @book %>
+<%= render "users/left" , user: @users , book: @book %>
     <div class="col-xs-9" >
           <h2>Book detail</h2>
           <table class="table">
           	<tr>
-          		<% if @user.id == current_user.id %>
-          		<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '100x100' %><br><%= link_to @user.name , user_path %></td>
+          		<% if @books.user.id == current_user.id %>
+          		<td><%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '100x100' %><br><%= link_to @books.user.name , user_path(@books.user) %></td>
           		<td><%= link_to @books.title , book_path , class: ""%></td>
-          		<td><%= @book.body %></td>
+          		<td><%= @books.body %></td>
           		<td><%= link_to "Edit" , edit_book_path(@books) , class: "btn-sm btn-success book_edit_#{@book.id}" %></td>
           		<td><%= link_to "Destroy" , book_path, method: :delete, data: { confirm: '本当に消しますか？' } , class: "btn-sm btn-danger destroy_#{@book.id}" %></td>
           		<% else %>
-          		<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '100x100' %><br><%= link_to @user.name , user_path %></td>
+          		<td><%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '100x100' %><br><%= link_to @books.user.name , user_path(@books.user) %></td>
           		<td><%= link_to @books.title , book_path , class: ""%></td>
-          		<td><%= @book.body %></td>
+          		<td><%= @books.body %></td>
           		<% end %>
            </tr>
           </table>
