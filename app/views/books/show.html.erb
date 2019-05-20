@@ -6,13 +6,13 @@
           <table class="table">
           	<tr>
           		<% if @books.user.id == current_user.id %>
-          		<td><%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '100x100' %><br><%= link_to @books.user.name , user_path(@books.user) %></td>
+          		<td><%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '40x40' %><br><%= link_to @books.user.name , user_path(@books.user) %></td>
           		<td><%= link_to @books.title , book_path , class: ""%></td>
           		<td><%= @books.body %></td>
-          		<td><%= link_to "Edit" , edit_book_path(@books) , class: "btn-sm btn-success book_edit_#{@book.id}" %></td>
-          		<td><%= link_to "Destroy" , book_path, method: :delete, data: { confirm: '本当に消しますか？' } , class: "btn-sm btn-danger destroy_#{@book.id}" %></td>
+          		<td><%= link_to "Edit" , edit_book_path(@books) , class: "btn-sm btn-success book_edit_#{@books.id}" %></td>
+          		<td><%= link_to "Destroy" , book_path, method: :delete, data: { confirm: '本当に消しますか？' } , class: "btn-sm btn-danger destroy_#{@books.id}" %></td>
           		<% else %>
-          		<td><%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '100x100' %><br><%= link_to @books.user.name , user_path(@books.user) %></td>
+          		<td><%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: "jpg" , fallback: "no_image.jpg" , size: '40x40' %><br><%= link_to @books.user.name , user_path(@books.user) %></td>
           		<td><%= link_to @books.title , book_path , class: ""%></td>
           		<td><%= @books.body %></td>
           		<% end %>

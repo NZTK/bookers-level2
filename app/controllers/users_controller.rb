@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
+	#before_filter :correct_user,   only: [:edit, :update, :show, :index, :create, :new, ]
   def show
 
   	@user = User.find(params[:id])
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
   end
   def edit
     @user = User.find(params[:id])
+    @user_id = current_user.id
 
   end
   def update
@@ -45,7 +47,18 @@ class UsersController < ApplicationController
     	render :action =>"edit"
     end
   end
+  def ensure_correct_user
+    @user = User.find_by(id:params[:id])
+    if @user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to user_path(@user.id)
+    end
+  end
   private
+  def correct_user
+      @user = User.find(params[:id])
+      redirect_to(user_path) unless current_user?(@user)
+    end
 def user_params
     params.require(:user).permit(:name, :profile_image , :introduction)
 end
