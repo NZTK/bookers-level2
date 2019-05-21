@@ -6,6 +6,7 @@
         <%= flash[:notice] %>
       </div>
     <% end %>
+        <h2>User info</h2>
     <% if @user.errors.any? %>
             <div id="error_explanation" >
               <ul>
@@ -17,7 +18,7 @@
             </div>
           <% end %>
 
-    <h2>User info</h2>
+
     <%= form_for(@user) do |f| %>
     	<div class="field ">
               <%= f.label :Name %><br>
