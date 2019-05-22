@@ -11,5 +11,5 @@ class User < ApplicationRecord
   #accepts_nested_attributes_for :book
   has_many :post_images, dependent: :destroy
   attachment :profile_image
-  attachment :books
+
 end

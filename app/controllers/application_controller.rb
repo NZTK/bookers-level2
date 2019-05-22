@@ -13,15 +13,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   end
   def after_sign_up_path_for(resoursce)
-      
-      user_path(@user)
+      #user_path(@user)
   end
   def after_sign_in_path_for(resoursce)
-      
       user_path(@user)
   end
   def after_sign_out_path_for(resoursce)
-      
       root_path
   end
 end
